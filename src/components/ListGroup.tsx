@@ -1,20 +1,32 @@
-import { MouseEvent } from "react";
+import { useState } from "react";
 
-export default function ListGroup(){
 
-    const villes: string[] = ['Monaco', 'Paris', 'Reims', 'Lyon', 'Bordeaux']
-    // villes = []
+interface Props{
+    items:string[];
+    titre: {
+        pluriel: string;
+        singulier: string;
+    };
+    handleClick:(items: string) => void;
 
-    const handleClick = (event: MouseEvent) => console.log(event);
-    
+}
+
+
+export default function ListGroup({items, titre, handleClick}:Props){
+
+    const [selectedIndex, setSelectedIndex] = useState(0);
+
+    const titreAffiche = items.length <= 1 ? titre.singulier : titre.pluriel;
+
     //Affichage
     return(
-        // rendue conditionnel
         <div>
-            {villes.length === 0 && <p>Aucune ville</p>}
+            <h1>{titreAffiche} :</h1>
+            {items.length === 0 && <p>Aucune {titreAffiche}</p>}
             <ul className="list-group">
-                {villes.map((ville,index) => (
-                        <li key={index} onClick={handleClick} className="list-group-item">{ville}</li>
+                {items.map((ville,index) => (
+                        <li key={index} onClick={()=>{setSelectedIndex(index);handleClick(ville);
+                        }} className={"list-group-item" + (index === selectedIndex ? " active" : "")}>{ville}</li>
                     ))}
             </ul>
 
