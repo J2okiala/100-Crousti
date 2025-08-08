@@ -1,32 +1,21 @@
-
-import { useState } from 'react';
+import { Routes, Route, Link } from "react-router-dom";
 import './App.css';
+import Home from "./pages/Home";
+import Contact from "./pages/Contact";
+import Navbar from "./components/Navbar/Navbar";
 
 
 function App() {
-  const [drink, setDrink] = useState({title: "Daiquiri", price: 5});
-
-  const handleClick =() => {
-    drink.price ++; 
-    console.log(drink.price);
-    
-    const drink2 = {...drink};
-    setDrink(drink2)// Créer un objet drink et le remplacé Utiliser le spred operator
-    console.log(drink2.price);
-  };
-
-        return (
-        <div>
-          <h2>{drink.title}</h2>
-          <h2>{drink.price}</h2>
-          <button onClick={handleClick} >Click1</button>
-        </div>
-    )
-  
-
+    return (
+    <div>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+    </div>
+  )
 
 }
 
 export default App
-
-// Un composant react Menu (tu peux t'inspirer des menus de bootstrap)
