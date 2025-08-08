@@ -1,18 +1,11 @@
-
+    
 export default function Message() {
 
-    //state
+    let count = 0;
+    count = count+1
 
-    //comportements
-    const prenom: string = 'Joseph';
+    return(
+        <div>Nb Message : {count}</div>
+    ) 
 
-    //Affichage
-    return (
-        //condition ternaire
-        <div>
-            <h2>Message de: {prenom || 'toto'} </h2>
-            <h2>Message de: {prenom ? prenom :'toto'} </h2>
-            <h2>Message de: {prenom === '' ? 'Bonjour inconnue' : 'bonjour ' + prenom} </h2>
-        </div>
-    )
 }

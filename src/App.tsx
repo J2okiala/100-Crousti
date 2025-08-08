@@ -1,23 +1,30 @@
-import './App.css'
-import Alert from './components/Alert';
-import ListGroup from './components/ListGroup'
+
+import { useState } from 'react';
+import './App.css';
+
 
 function App() {
+  const [drink, setDrink] = useState({title: "Daiquiri", price: 5});
+
+  const handleClick =() => {
+    drink.price ++; 
+    console.log(drink.price);
+    
+    const drink2 = {...drink};
+    setDrink(drink2)// Créer un objet drink et le remplacé Utiliser le spred operator
+    console.log(drink2.price);
+  };
+
+        return (
+        <div>
+          <h2>{drink.title}</h2>
+          <h2>{drink.price}</h2>
+          <button onClick={handleClick} >Click1</button>
+        </div>
+    )
+  
 
 
-  let items: string[] = ['Paris', 'Reims'];
-  items = ['Paris', 'Reims', 'Nantes'];
-
-
-  return(
-    <div>
-      <ListGroup items={items} titre={{pluriel:"Villes", singulier:"Ville"}} handleClick={(items: string) =>{
-      console.log(items)
-    }
-  }/>
-      <Alert><h1>Hello</h1></Alert>
-    </div>
-  )
 }
 
 export default App
