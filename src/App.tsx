@@ -8,6 +8,7 @@ import Restaurants from "./pages/Restaurants";
 import MonCompte from "./pages/MonCompte";
 import Franchise from "./pages/Franchise";
 import Footer from "./components/Footer/Footer";
+import Connexion from "./pages/Connexion";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/restaurants" element={<Restaurants />} />
           <Route path="/franchise" element={<Franchise />} />
           <Route path="/moncompte" element={<MonCompte />} />
+          <Route path="/connexion" element={<Connexion />} />
         </Routes>
         <Footer />
     </div>
