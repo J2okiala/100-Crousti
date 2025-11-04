@@ -20,6 +20,7 @@ export default function Connexion() {
         if (response.ok) {
             const data = await response.json();
             setMessage(`✅ Connexion réussie : ${data.message || "Bienvenue !"}`);
+            localStorage.setItem('token', data.token)
         } else {
             setMessage("❌ Échec de la connexion. Vérifie ton email ou mot de passe.");
         }
