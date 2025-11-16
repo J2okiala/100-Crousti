@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
+import { AuthContext, } from "../../context/AuthContext";
 import { useContext } from "react";
 
 const Navbar = () => {
@@ -47,6 +47,7 @@ const Navbar = () => {
                         <li className="nav-item">
                             <Link className="nav-link" to="/franchise">Franchise</Link>
                         </li>
+                        
                         {
                             user &&
                             <li className="nav-item">
@@ -55,9 +56,16 @@ const Navbar = () => {
 
                         {
 
-                            !user ? (<li className="nav-item">
-                                <Link className="nav-link" to="/connexion">Connexion</Link>
-                            </li>) :
+                            !user ? (
+                                <>
+                                    <li className="nav-item">
+                                    <Link className="nav-link" to="/inscription">Inscription</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                    <Link className="nav-link" to="/connexion">Connexion</Link>
+                                    </li>
+                                </>
+                            ) :
                                 (<li className="nav-item">
                                     <button className="nav-link btn btn-link text-light" onClick={logout}>
                                         Déconnexion

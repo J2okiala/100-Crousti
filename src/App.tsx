@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthProvider";
 import './App.css';
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar/Navbar";
@@ -9,7 +10,7 @@ import MonCompte from "./pages/MonCompte";
 import Franchise from "./pages/Franchise";
 import Footer from "./components/Footer/Footer";
 import Connexion from "./pages/Connexion";
-import { AuthProvider } from "./context/AuthContext";
+import Inscription from "./pages/Inscription";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/restaurants" element={<Restaurants />} />
           <Route path="/franchise" element={<Franchise />} />
           <Route path="/moncompte" element={<MonCompte />} />
+          <Route path="/inscription" element={<Inscription />} />
           <Route path="/connexion" element={<Connexion />} />
         </Routes>
         <Footer />

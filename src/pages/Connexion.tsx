@@ -2,8 +2,9 @@ import React, { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
+
 export default function Connexion() {
-    // 🧠 États pour les champs du formulaire
+    //États pour les champs du formulaire
     const { login } = useContext(AuthContext)
     const navigate = useNavigate();
 
@@ -11,7 +12,7 @@ export default function Connexion() {
     const [motDePasse, setMotDePasse] = useState("");
     const [message, setMessage] = useState("");
 
-    // 📡 Fonction appelée lors du clic sur "Soumettre"
+    //Fonction appelée lors du clic sur "Soumettre"
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault(); // empêche le rechargement de la page
 
@@ -24,18 +25,18 @@ export default function Connexion() {
 
             if (response.ok) {
                 const data = await response.json();
-                setMessage(`✅ Connexion réussie : ${data.message || "Bienvenue !"}`);
+                setMessage(` Connexion réussie : ${data.message || "Bienvenue !"}`);
                 // setter les valeur token et user
-                login(data.token, { email })
+                login(data.token, data.user)
                 // changement de page
                 navigate('/');
                 //   localStorage.setItem('token', data.token)
             } else {
-                setMessage("❌ Échec de la connexion. Vérifie ton email ou mot de passe.");
+                setMessage(" Échec de la connexion. Vérifie ton email ou mot de passe.");
             }
         } catch (error) {
             console.error("Erreur de connexion :", error);
-            setMessage("⚠️ Erreur de communication avec le serveur.");
+            setMessage(" Erreur de communication avec le serveur.");
         }
     };
 
@@ -53,7 +54,7 @@ export default function Connexion() {
                             className="form-control"
                             id="inputEmail"
                             value={email}
-                            onChange={(e) => setEmail(e.target.value)} // ✅ met à jour le state
+                            onChange={(e) => setEmail(e.target.value)} 
                             required
                         />
                     </div>
@@ -69,7 +70,7 @@ export default function Connexion() {
                             className="form-control"
                             id="inputPassword"
                             value={motDePasse}
-                            onChange={(e) => setMotDePasse(e.target.value)} // ✅ met à jour le state
+                            onChange={(e) => setMotDePasse(e.target.value)} 
                             required
                         />
                     </div>
