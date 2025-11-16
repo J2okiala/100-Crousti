@@ -1,13 +1,17 @@
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import { useContext } from "react";
 
 const Navbar = () => {
+    const { user, logout } = useContext(AuthContext)
+
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
                 {/* Logo à gauche */}
                 <Link className="navbar-brand" to="/">
                     <img
-                        src="/LogoCrousti.png" 
+                        src="/LogoCrousti.png"
                         alt="Logo"
                         width="50"
                         height="50"
@@ -43,12 +47,24 @@ const Navbar = () => {
                         <li className="nav-item">
                             <Link className="nav-link" to="/franchise">Franchise</Link>
                         </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/moncompte">MonCompte</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/connexion">Connexion</Link>
-                        </li>
+                        {
+                            user &&
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/moncompte">MonCompte</Link>
+                            </li>}
+
+                        {
+
+                            !user ? (<li className="nav-item">
+                                <Link className="nav-link" to="/connexion">Connexion</Link>
+                            </li>) :
+                                (<li className="nav-item">
+                                    <button className="nav-link btn btn-link text-light" onClick={logout}>
+                                        Déconnexion
+                                    </button>
+                                </li>)
+                        }
+
                     </ul>
                 </div>
             </div>
