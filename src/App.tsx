@@ -9,11 +9,13 @@ import MonCompte from "./pages/MonCompte";
 import Franchise from "./pages/Franchise";
 import Footer from "./components/Footer/Footer";
 import Connexion from "./pages/Connexion";
+import { AuthProvider } from "./context/AuthContext";
 
 
 function App() {
-    return (
+  return (
     <div>
+      <AuthProvider>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -25,6 +27,7 @@ function App() {
           <Route path="/connexion" element={<Connexion />} />
         </Routes>
         <Footer />
+      </AuthProvider>
     </div>
   )
 
