@@ -12,7 +12,7 @@ export default function Inscription() {
     const [adresse, setAdresse] = useState("");
     const [message, setMessage] = useState("");
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         try {
@@ -32,14 +32,15 @@ export default function Inscription() {
             const text = await response.text();
 
             if (response.ok) {
-                setMessage("✅ Inscription réussie !");
+                setMessage(" Inscription réussie !");
                 setTimeout(() => navigate("/connexion"), 1500);
             } else {
                 const err = JSON.parse(text);
-                setMessage(`❌ Erreur : ${err.message}`);
+                setMessage(` Erreur : ${err.message}`);
             }
         } catch (err) {
-            setMessage("⚠️ Erreur de communication avec le serveur.");
+            console.error(err);
+            setMessage(" Erreur de communication avec le serveur.");
         }
     };
 
