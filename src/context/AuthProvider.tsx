@@ -54,6 +54,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 login,
                 logout,
                 isAuthenticated: !!token,
+                setUser,
             }}
         >
             {children}

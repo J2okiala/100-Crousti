@@ -51,7 +51,7 @@ const Navbar = () => {
                         {
                             user &&
                             <li className="nav-item">
-                                <Link className="nav-link" to="/moncompte">MonCompte</Link>
+                                <Link className="nav-link" to="/mon-compte">MonCompte</Link>
                             </li>}
 
                         {

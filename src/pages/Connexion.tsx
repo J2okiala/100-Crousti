@@ -2,19 +2,16 @@ import React, { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-
 export default function Connexion() {
-    //États pour les champs du formulaire
-    const { login } = useContext(AuthContext)
+    const { login } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
     const [motDePasse, setMotDePasse] = useState("");
     const [message, setMessage] = useState("");
 
-    //Fonction appelée lors du clic sur "Soumettre"
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault(); // empêche le rechargement de la page
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
         try {
             const response = await fetch("http://localhost:3000/api/auth", {
@@ -25,66 +22,57 @@ export default function Connexion() {
 
             if (response.ok) {
                 const data = await response.json();
-                setMessage(` Connexion réussie : ${data.message || "Bienvenue !"}`);
-                // setter les valeur token et user
-                login(data.token, data.user)
-                // changement de page
-                navigate('/');
-                //   localStorage.setItem('token', data.token)
+                login(data.token, data.user);
+                navigate("/");
             } else {
-                setMessage(" Échec de la connexion. Vérifie ton email ou mot de passe.");
+                setMessage("❌ Email ou mot de passe incorrect.");
             }
-        } catch (error) {
-            console.error("Erreur de connexion :", error);
-            setMessage(" Erreur de communication avec le serveur.");
+        } catch (err) {
+            setMessage("⚠️ Erreur de communication avec le serveur.");
         }
     };
 
     return (
-        <div className="container mt-5">
-            <h2>Connexion</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="mb-3 row">
-                    <label htmlFor="inputEmail" className="col-sm-2 col-form-label">
-                        Email
-                    </label>
-                    <div className="col-sm-10">
+        <div
+            className="d-flex justify-content-center align-items-center"
+            style={{
+                minHeight: "100vh",
+                background: "linear-gradient(135deg, #eef2f7, #e5edf4)",
+            }}
+        >
+            <div className="card shadow-lg p-4" style={{ width: "420px", borderRadius: "18px" }}>
+                <h2 className="text-center mb-4 fw-bold text-black">Connexion</h2>
+
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label className="form-label fw-semibold">Email</label>
                         <input
                             type="email"
-                            className="form-control"
-                            id="inputEmail"
+                            className="form-control rounded-3"
                             value={email}
-                            onChange={(e) => setEmail(e.target.value)} 
+                            onChange={(e) => setEmail(e.target.value)}
                             required
                         />
                     </div>
-                </div>
 
-                <div className="mb-3 row">
-                    <label htmlFor="inputPassword" className="col-sm-2 col-form-label">
-                        Mot de passe
-                    </label>
-                    <div className="col-sm-10">
+                    <div className="mb-3">
+                        <label className="form-label fw-semibold">Mot de passe</label>
                         <input
                             type="password"
-                            className="form-control"
-                            id="inputPassword"
+                            className="form-control rounded-3"
                             value={motDePasse}
-                            onChange={(e) => setMotDePasse(e.target.value)} 
+                            onChange={(e) => setMotDePasse(e.target.value)}
                             required
                         />
                     </div>
-                </div>
 
-                <div className="col-12">
-                    <button className="btn btn-primary" type="submit">
-                        Soumettre
+                    <button className="btn btn-dark w-100 rounded-3 py-2 fw-bold">
+                        Se connecter
                     </button>
-                </div>
-            </form>
+                </form>
 
-            {/* Affichage du message de retour */}
-            {message && <p className="mt-3">{message}</p>}
+                {message && <p className="mt-3 text-center">{message}</p>}
+            </div>
         </div>
     );
 }

@@ -11,6 +11,7 @@ import Franchise from "./pages/Franchise";
 import Footer from "./components/Footer/Footer";
 import Connexion from "./pages/Connexion";
 import Inscription from "./pages/Inscription";
+import ModifCompte from "./pages/ModifCompte";
 
 
 function App() {
@@ -24,7 +25,8 @@ function App() {
           <Route path="/menu" element={<Menu />} />
           <Route path="/restaurants" element={<Restaurants />} />
           <Route path="/franchise" element={<Franchise />} />
-          <Route path="/moncompte" element={<MonCompte />} />
+          <Route path="/mon-compte" element={<MonCompte />} />
+          <Route path="/modifier-compte" element={<ModifCompte />} />
           <Route path="/inscription" element={<Inscription />} />
           <Route path="/connexion" element={<Connexion />} />
         </Routes>

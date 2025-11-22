@@ -54,9 +54,12 @@ export default function MonCompte() {
                             </ul>
 
                             <div className="text-center mt-4">
-                                <button className="btn btn-warning">
+                                <button
+                                    className="btn btn-warning"
+                                    onClick={() => navigate("/modifier-compte")}>
                                     Modifier mes informations ✏️
                                 </button>
+
                             </div>
 
                         </div>
